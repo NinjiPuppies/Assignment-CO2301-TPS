@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
+// Forward declares the bullet class.
+class ABullet;
+
 UCLASS()
 class ASSIGNMENT_API APlayerCharacter : public ACharacter
 {
@@ -28,7 +31,15 @@ public:
 
 private:
 
-	// Declares the functions required for player movement.
+	// This is a subclass of the bullet class for use in spawning projectiles.
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<ABullet> BulletClass;
+
+	// This is a spawn point for the projectiles.
+	UPROPERTY(EditAnywhere)
+		USceneComponent* ProjectileSpawn;
+
+	// Declares the functions required for player movement and weapon firing.
 	UFUNCTION()
 		void Forwards(float Value);
 
@@ -40,4 +51,10 @@ private:
 	
 	UFUNCTION()
 		void LookUp(float Value);
+
+	UFUNCTION()
+		void StartFire();
+
+	UFUNCTION()
+		void EndFire();
 };
