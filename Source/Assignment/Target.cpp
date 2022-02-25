@@ -41,9 +41,10 @@ float ATarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 	Health -= DamageAmount;
 	if (Health <= 0.0f)
 	{
-		// Destroys target if it has no health left.
+		// Destroys target if it has no health left and plays a sound.
 		Destroy();
 		GameModeRef->TargetDestroyed();
+		UGameplayStatics::PlaySound2D(GetWorld(), TargetSound, 1.0f, 1.0f, 0.0f);
 	}
 	// Returns the damage taken by the target on this hit.
 	return DamageAmount;

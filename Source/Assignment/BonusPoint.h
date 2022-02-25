@@ -37,6 +37,10 @@ private:
 	UPROPERTY(EditAnywhere)
 		UBoxComponent* CollisionBox;
 
+	// Sound played when a point is picked up.
+	UPROPERTY(EditAnywhere)
+		USoundBase* Scored;
+
 	// Creates a reference for the class to use functions within game mode base.
 	UPROPERTY()
 		AAssignmentGameModeBase* GameModeRef;

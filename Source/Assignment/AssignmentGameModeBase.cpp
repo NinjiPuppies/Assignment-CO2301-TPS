@@ -3,6 +3,7 @@
 
 #include "AssignmentGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Blueprint/UserWidget.h"
 
 // Called when the game starts or when spawned
 void AAssignmentGameModeBase::BeginPlay()
@@ -35,6 +36,7 @@ void AAssignmentGameModeBase::GameOver(bool PlayerWon)
 void AAssignmentGameModeBase::TimeUp()
 {
 	GameOver(false);
+	UGameplayStatics::PlaySound2D(GetWorld(), LossSound, 1.0f, 1.0f, 0.0f);
 }
 
 // Ends the game if the player destroys the target (Player Win).

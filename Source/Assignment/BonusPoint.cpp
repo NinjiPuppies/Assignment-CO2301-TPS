@@ -18,7 +18,7 @@ ABonusPoint::ABonusPoint()
 
 	// Creates a collision for the bonus point and assigns it to the root component.
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
-	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));
+	CollisionBox->SetBoxExtent(FVector(64.0f, 64.0f, 64.0f));
 	CollisionBox->SetCollisionProfileName("Trigger");
 	CollisionBox->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f));
 	CollisionBox->SetupAttachment(PointMesh);
@@ -55,5 +55,5 @@ void ABonusPoint::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Ot
 // This function acts as a dynamic delegate of the OnOverlapEnd function.
 void ABonusPoint::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Overlap Over"));
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), Scored, GetActorLocation(), 1.0f, 1.0f, 0.0f);
 }

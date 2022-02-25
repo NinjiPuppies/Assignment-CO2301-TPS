@@ -70,18 +70,14 @@ void APlayerCharacter::LookUp(float Value)
 }
 
 // This function controls what happens when the player begins firing their weapon.
-void APlayerCharacter::StartFire()
-{
-	//UE_LOG(LogTemp, Warning, TEXT("Fire Pressed"));
-}
-
-// This function controls what happens when the player begins firing their weapon.
 void APlayerCharacter::EndFire()
 {
 	if (BulletClass) // Ensures that the Bullet projectile is set in the blueprint of the player.
 	{
 		FVector SpawnLocation = ProjectileSpawn->GetComponentLocation(); // Sets the spawn location for the projectile.
 		FRotator SpawnRotation = ProjectileSpawn->GetComponentRotation(); // Sets the spawn rotation for the projectile.
+
+		UGameplayStatics::PlaySound2D(GetWorld(), Fire, 1.0f, 1.0f, 0.0f);
 
 		ABullet* TempBullet = GetWorld()->SpawnActor<ABullet>(BulletClass, SpawnLocation, SpawnRotation); // Spawns in the projectile.
 		TempBullet->SetOwner(this); // Sets the player as the owner of the bullet.

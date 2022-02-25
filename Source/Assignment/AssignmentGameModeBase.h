@@ -9,6 +9,7 @@
 /**
  * 
  */
+
 UCLASS()
 class ASSIGNMENT_API AAssignmentGameModeBase : public AGameModeBase
 {
@@ -45,6 +46,10 @@ private:
 	// This is the target points for the player to win.
 	UPROPERTY(VisibleAnywhere)
 		int TargetPoints = 5;
+
+	// Sound played when the player loses.
+	UPROPERTY(EditAnywhere)
+		USoundBase* LossSound;
 
 	// Starts the timer.
 	UFUNCTION()

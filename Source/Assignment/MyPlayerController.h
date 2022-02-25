@@ -48,6 +48,14 @@ private:
 	UPROPERTY()
 		UUserWidget* GameplayUI;
 
+	// This is a subclass of the widget class for use in creating ui elements.
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<UUserWidget> MiniMapUIClass;
+
+	// Used to create the widget and add it to the viewport.
+	UPROPERTY()
+		UUserWidget* MiniMapUI;
+
 	// Sets the ammo of the player.
 	UPROPERTY(VisibleAnywhere)
 		int Ammo = 30;

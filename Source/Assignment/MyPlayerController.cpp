@@ -24,6 +24,11 @@ void AMyPlayerController::BeginPlay()
 	{
 		GameplayUI->AddToViewport();
 	}
+	MiniMapUI = CreateWidget(this, MiniMapUIClass);
+	if (MiniMapUI != nullptr)
+	{
+		MiniMapUI->AddToViewport();
+	}
 }
 
 // Called to bind functionality to input from the player.

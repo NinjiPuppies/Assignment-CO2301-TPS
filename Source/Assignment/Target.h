@@ -39,6 +39,10 @@ private:
 	UPROPERTY(EditAnywhere)
 		float Health = 100.0f;
 
+	// Sound played when target destroyed.
+	UPROPERTY(EditAnywhere)
+		USoundBase* TargetSound;
+
 	// Creates a reference for the class to use functions within game mode base.
 	UPROPERTY()
 		AAssignmentGameModeBase* GameModeRef;

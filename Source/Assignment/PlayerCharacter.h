@@ -44,9 +44,6 @@ public:
 		void LookUp(float Value);
 
 	UFUNCTION()
-		void StartFire();
-
-	UFUNCTION()
 		void EndFire();
 
 private:
@@ -62,6 +59,10 @@ private:
 	// Sets the health of the player.
 	UPROPERTY(VisibleAnywhere)
 		float Health = 100.0f;
+
+	// Sound played when gun is fired.
+	UPROPERTY(EditAnywhere)
+		USoundBase* Fire;
 
 	//UPROPERTY()
 	//	AAssignmentGameModeBase* GameModeRef;
