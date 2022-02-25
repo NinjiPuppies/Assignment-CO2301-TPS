@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Bullet.generated.h"
 
+// Forward declares the projectile movement class.
 class UProjectileMovementComponent;
 
 UCLASS()

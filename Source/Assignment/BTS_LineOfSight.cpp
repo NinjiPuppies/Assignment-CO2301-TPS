@@ -14,7 +14,6 @@ void UBTS_LineOfSight::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	AAIController* AIController = OwnerComp.GetAIOwner();
 	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(),0);
 
-
 	// Checks if the ai can see the player.
 	if (AIController->LineOfSightTo(PlayerPawn))
 	{
@@ -26,5 +25,4 @@ void UBTS_LineOfSight::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 		// Clears the 'HasLineOfSight' key as the player cannot be seen.
 		OwnerComp.GetBlackboardComponent()->ClearValue(GetSelectedBlackboardKey());
 	}
-
 }

@@ -13,7 +13,6 @@ UCLASS()
 class ASSIGNMENT_API UBTS_LineOfSight : public UBTService_BlackboardBase
 {
 	GENERATED_BODY()
-	
 
 protected:
 	// Called every frame (overwrites the basic tick function).

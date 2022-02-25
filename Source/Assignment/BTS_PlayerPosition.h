@@ -17,5 +17,4 @@ class ASSIGNMENT_API UBTS_PlayerPosition : public UBTService_BlackboardBase
 protected:
 	// Called every frame (overwrites the basic tick function).
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
-	
 };

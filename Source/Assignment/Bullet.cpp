@@ -36,6 +36,7 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Creates the dynamic delegate link to the OnActorHit function.
 	OnActorHit.AddDynamic(this, &ABullet::OnHit);
 }
 

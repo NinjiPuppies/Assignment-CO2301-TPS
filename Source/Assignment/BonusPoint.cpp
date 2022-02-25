@@ -12,9 +12,11 @@ ABonusPoint::ABonusPoint()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// Creates a mesh for the bonus point and assigns it to the root component.
 	PointMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PointMesh"));
 	SetRootComponent(PointMesh);
 
+	// Creates a collision for the bonus point and assigns it to the root component.
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collision"));
 	CollisionBox->SetBoxExtent(FVector(32.0f, 32.0f, 32.0f));
 	CollisionBox->SetCollisionProfileName("Trigger");
@@ -27,8 +29,10 @@ void ABonusPoint::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Gets a reference to the world in order to allow the points to disappear.
 	GameModeRef = Cast<AAssignmentGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 
+	// Creates the dynamic delegate links to the OnComponentOverlap functions.
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &ABonusPoint::OnOverlapBegin);
 	CollisionBox->OnComponentEndOverlap.AddDynamic(this, &ABonusPoint::OnOverlapEnd);
 }
@@ -40,12 +44,15 @@ void ABonusPoint::Tick(float DeltaTime)
 
 }
 
+// This function acts as a dynamic delegate of the OnOverlapBegin function.
 void ABonusPoint::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	// The plauer adds to their score and then the point is destroyed.
 	GameModeRef->PointScored();
 	Destroy();
 }
 
+// This function acts as a dynamic delegate of the OnOverlapEnd function.
 void ABonusPoint::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Overlap Over"));

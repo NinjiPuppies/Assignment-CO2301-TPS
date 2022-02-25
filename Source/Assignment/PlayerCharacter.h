@@ -30,6 +30,25 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Declares the functions required for player movement and weapon firing.
+	UFUNCTION()
+		void Forwards(float Value);
+
+	UFUNCTION()
+		void Strafe(float Value);
+
+	UFUNCTION()
+		void Turn(float Value);
+
+	UFUNCTION()
+		void LookUp(float Value);
+
+	UFUNCTION()
+		void StartFire();
+
+	UFUNCTION()
+		void EndFire();
+
 private:
 
 	// This is a subclass of the bullet class for use in spawning projectiles.
@@ -46,23 +65,4 @@ private:
 
 	//UPROPERTY()
 	//	AAssignmentGameModeBase* GameModeRef;
-
-	// Declares the functions required for player movement and weapon firing.
-	UFUNCTION()
-		void Forwards(float Value);
-
-	UFUNCTION()
-		void Strafe(float Value);
-
-	UFUNCTION()
-		void Turn(float Value);
-	
-	UFUNCTION()
-		void LookUp(float Value);
-
-	UFUNCTION()
-		void StartFire();
-
-	UFUNCTION()
-		void EndFire();
 };

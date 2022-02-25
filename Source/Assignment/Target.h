@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Target.generated.h"
 
+// Forward declares the game mode base.
 class AAssignmentGameModeBase;
 
 UCLASS()
@@ -26,6 +27,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+
+	// Overrides the base take damage function with a custom definition.
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
 	// The mesh component for the target.
@@ -36,6 +39,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		float Health = 100.0f;
 
+	// Creates a reference for the class to use functions within game mode base.
 	UPROPERTY()
 		AAssignmentGameModeBase* GameModeRef;
 

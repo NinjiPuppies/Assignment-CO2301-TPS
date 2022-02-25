@@ -24,6 +24,7 @@ void ATarget::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Creates the dynamic delegate link to the OnActorHit function.
 	OnActorHit.AddDynamic(this, &ATarget::HandleHit);
 }
 
@@ -31,7 +32,6 @@ void ATarget::BeginPlay()
 void ATarget::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 
@@ -49,7 +49,7 @@ float ATarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 	return DamageAmount;
 }
 
-// This function destroys the bullet when it collides with the target
+// This function acts as a dynamic delegate of the OnActorHit function.
 void ATarget::HandleHit(AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit)
 {
 	OtherActor->Destroy();

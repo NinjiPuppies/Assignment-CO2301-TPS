@@ -43,13 +43,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAxis("Forwards", this, &APlayerCharacter::Forwards);
-	PlayerInputComponent->BindAxis("Strafe", this, &APlayerCharacter::Strafe);
-	PlayerInputComponent->BindAxis("Turn", this, &APlayerCharacter::Turn);
-	PlayerInputComponent->BindAxis("LookUp", this, &APlayerCharacter::LookUp);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &APlayerCharacter::Jump);
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APlayerCharacter::StartFire);
-	PlayerInputComponent->BindAction("Fire", IE_Released, this, &APlayerCharacter::EndFire);
 }
 
 // This function allows the player to move forwards/backwards using the AddMovementInput function and the input value from the player and their forward vector.
@@ -85,7 +78,6 @@ void APlayerCharacter::StartFire()
 // This function controls what happens when the player begins firing their weapon.
 void APlayerCharacter::EndFire()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Fire Released"));
 	if (BulletClass) // Ensures that the Bullet projectile is set in the blueprint of the player.
 	{
 		FVector SpawnLocation = ProjectileSpawn->GetComponentLocation(); // Sets the spawn location for the projectile.
