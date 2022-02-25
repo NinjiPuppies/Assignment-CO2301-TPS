@@ -3,6 +3,8 @@
 
 #include "PlayerCharacter.h"
 #include "Bullet.h"
+#include "Kismet/GameplayStatics.h"
+#include "AssignmentGameModeBase.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -23,12 +25,18 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//GameModeRef = Cast<AAssignmentGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 }
 
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (Health <= 0.0f)
+	{
+		//GameModeRef->PlayerKilled();
+	}
 }
 
 // Called to bind functionality to input from the player.
@@ -71,17 +79,20 @@ void APlayerCharacter::LookUp(float Value)
 // This function controls what happens when the player begins firing their weapon.
 void APlayerCharacter::StartFire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire Pressed"));
+	//UE_LOG(LogTemp, Warning, TEXT("Fire Pressed"));
 }
 
 // This function controls what happens when the player begins firing their weapon.
 void APlayerCharacter::EndFire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire Released"));
-	if (BulletClass) { // Ensures that the Bullet projectile is set in the blueprint of the player.
+	//UE_LOG(LogTemp, Warning, TEXT("Fire Released"));
+	if (BulletClass) // Ensures that the Bullet projectile is set in the blueprint of the player.
+	{
 		FVector SpawnLocation = ProjectileSpawn->GetComponentLocation(); // Sets the spawn location for the projectile.
 		FRotator SpawnRotation = ProjectileSpawn->GetComponentRotation(); // Sets the spawn rotation for the projectile.
+
 		ABullet* TempBullet = GetWorld()->SpawnActor<ABullet>(BulletClass, SpawnLocation, SpawnRotation); // Spawns in the projectile.
+		TempBullet->SetOwner(this); // Sets the player as the owner of the bullet.
 	}
 }
 

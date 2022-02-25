@@ -21,11 +21,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-
 private:
 
 	// The mesh component for the bullet.
@@ -36,8 +31,16 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		UProjectileMovementComponent* ProjectileMovement;
 
+	// The damage the bullet deals.
+	UPROPERTY(EditAnywhere)
+		float Damage = 10.0f;
 
 	// The movement speed of the bullet.
 	UPROPERTY(EditAnywhere)
 		float MovementSpeed = 2500.0f;
+
+	// This function acts as a dynamic delegate of the OnActorHit function.
+	UFUNCTION()
+		void OnHit(AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit);
+
 };

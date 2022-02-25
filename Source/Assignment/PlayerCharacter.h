@@ -6,8 +6,9 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
-// Forward declares the bullet class.
+// Forward declares the bullet class and game mode base.
 class ABullet;
+class AAssigmentGameModeBase;
 
 UCLASS()
 class ASSIGNMENT_API APlayerCharacter : public ACharacter
@@ -38,6 +39,13 @@ private:
 	// This is a spawn point for the projectiles.
 	UPROPERTY(EditAnywhere)
 		USceneComponent* ProjectileSpawn;
+
+	// Sets the health of the player.
+	UPROPERTY(VisibleAnywhere)
+		float Health = 100.0f;
+
+	//UPROPERTY()
+	//	AAssignmentGameModeBase* GameModeRef;
 
 	// Declares the functions required for player movement and weapon firing.
 	UFUNCTION()
